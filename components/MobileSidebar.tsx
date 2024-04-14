@@ -3,8 +3,7 @@
 import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
-import Sidebar from "./Sidebar";
-import { Menu, MenuIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 import ModeSwitch from "./Navbar/modeswitch/ModeSwitch";
 import Link from "next/link";
 import { sidebarData } from "@/constants";
@@ -17,6 +16,10 @@ const MobileSidebar = () => {
     setOpen(newOpen);
   };
 
+  const closeDrawer = () => {
+    setOpen(false);
+  };
+
   const pathname = usePathname();
 
   return (
@@ -24,20 +27,21 @@ const MobileSidebar = () => {
       <Button onClick={toggleDrawer(true)}>
         <Menu size={30} className="cursor-pointer" />
       </Button>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer open={open} onClose={toggleDrawer(false)} >
         <div className="bg-slate-800 text-white h-full">
-          <div className="w-full flex items-center justify-center pb-10 p-5">
+          <div className="w-full flex gap-3 items-center justify-center pb-10 p-5">
+            <span className="text-xl">Theme -</span>
             <ModeSwitch />
           </div>
           {sidebarData.map(link => {
-            const isActive =
-              pathname === link.route || pathname.startsWith(link.route);
+            const isActive = pathname === link.route;
 
             return (
               <Link
                 href={link.route}
                 key={link.label}
-                className={`flex justify-start pl-5 gap-7 font-bold items-center p-4 rounded-lg hover:bg-slate-400 hover:text-slate-500 ${isActive
+                onClick={closeDrawer}
+                className={`flex justify-start pl-5 gap-7 font-bold items-center p-4 rounded-lg hover:text-slate-300 ${isActive
                   ? "bg-blue-400"
                   : null}`}
               >

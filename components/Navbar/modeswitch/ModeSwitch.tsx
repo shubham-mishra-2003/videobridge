@@ -33,7 +33,7 @@ const ModeSwitch = () => {
     },
     Light: {
       color: "text-slate-900",
-      background: "bg-slate-100",
+      background: "bg-white",
     },
   };
 
