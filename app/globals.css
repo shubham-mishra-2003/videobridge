@@ -13,6 +13,19 @@
   /* user-select: none; */
 }
 
+.dark-theme {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(250 250 250 / var(--tw-text-opacity));
+}
+
+.light-theme {
+  background: #fff;
+  --tw-bg-opacity: 1;
+  color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
 /* Loader */
 .loader {
   width: 50px;

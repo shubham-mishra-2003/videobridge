@@ -1,42 +1,34 @@
 "use client";
 
 import "./switch.css";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const ModeSwitch = () => {
-
   const [isDark, setIsDark] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme === 'true';
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "true";
   });
 
   const handleToggle = () => {
     setIsDark(!isDark);
   };
 
-  useEffect(() => {
-    const body = document.querySelector("body");
-    const textColorClass = isDark ? style.Dark.color : style.Light.color;
-    const bgColorClass = isDark ? style.Dark.background : style.Light.background;
-
-    body?.classList.remove(isDark ? style.Light.background : style.Dark.background);
-    body?.classList.remove(isDark ? style.Light.color : style.Dark.color);
-    body?.classList.add(bgColorClass, textColorClass);
-
-    localStorage.setItem('theme', isDark.toString());
-  }, [isDark]);
-
-  const style = {
-    Dark: {
-      color: "text-zinc-50",
-      background: "bg-slate-900",
+  useEffect(
+    () => {
+      const body = document.querySelector("body");
+      if (body) {
+        if (isDark) {
+          body.classList.add("dark-theme");
+          body.classList.remove("light-theme");
+        } else {
+          body.classList.remove("dark-theme");
+          body.classList.add("light-theme");
+        }
+      }
+      localStorage.setItem("theme", isDark.toString());
     },
-    Light: {
-      color: "text-slate-900",
-      background: "bg-white",
-    },
-  };
-
+    [isDark]
+  );
 
   return (
     <div className="flex items-center">
