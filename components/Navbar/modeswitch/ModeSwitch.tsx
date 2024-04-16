@@ -60,6 +60,7 @@ const ModeSwitch = () => {
           id="modetoggle"
           onChange={handleToggle}
           checked={isDark}
+          defaultChecked={true}
         />
         <span className="slider" />
       </label>

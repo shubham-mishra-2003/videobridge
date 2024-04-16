@@ -4,9 +4,10 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
-import { Copy } from "lucide-react";
+import { Copy, Trash } from "lucide-react";
 import toast from "react-hot-toast";
 import { ReactNode } from "react";
+import { avatarImages } from "@/constants";
 
 interface MeetingCardProps {
   title: string;
@@ -29,15 +30,6 @@ const MeetingCard = ({
   link,
   buttonText
 }: MeetingCardProps) => {
-
-  const avatarImages = [
-    "/images/boy(1).png",
-    "/images/boy(2).png",
-    "/images/avatar.png",
-    "/images/boy.png",
-    "/images/girl.png"
-  ];
-
   return (
     <section className="flex min-h-[258px] w-full flex-col justify-between rounded-[14px] bg-slate-700 text-white px-5 py-8 xl:max-w-[568px]">
       <article className="flex flex-col gap-5">
@@ -72,7 +64,10 @@ const MeetingCard = ({
         </div>
         {!isPreviousMeeting &&
           <div className="flex gap-2">
-            <Button onClick={handleClick} className="rounded bg-orange-400 px-6">
+            <Button
+              onClick={handleClick}
+              className="rounded bg-orange-400 px-6"
+            >
               {buttonIcon1}
               &nbsp; {buttonText}
             </Button>

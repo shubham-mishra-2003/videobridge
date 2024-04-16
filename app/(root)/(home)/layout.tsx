@@ -1,6 +1,13 @@
 import Navbar from "@/components/Navbar/Navbar";
+import { Metadata } from 'next';
 import Sidebar from "@/components/Sidebar";
 import { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "VideoBridge | connect",
+  description: "Video meeting/calling App made by connect",
+  icons: "../logo.jpeg"
+};
 
 const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (

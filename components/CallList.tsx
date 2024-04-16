@@ -3,22 +3,24 @@
 import { useGetCalls } from "@/hooks/useGetCalls";
 import { Call, CallRecording } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MeetingCard from "./MeetingCard";
-import { CalendarClock, SquarePlay, Play, Videotape, ArrowLeftToLine} from "lucide-react";
+import { CalendarClock,CalendarCheck2, SquarePlay, Play, Videotape} from "lucide-react";
 import Loader from "./Loader";
+import toast from "react-hot-toast";
 
 const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
   const {
     endedCalls,
     upcomingCalls,
     isLoading,
-    callRecordings
+    callRecordings,
   } = useGetCalls();
 
   const [recordings, setRecordings] = useState<CallRecording[]>([]);
 
   const router = useRouter();
+
   const getCalls = () => {
     switch (type) {
       case "ended":
@@ -51,10 +53,34 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
     }
   };
 
+  useEffect(() => {
+    const fetchRecordings = async () => {
+      try {
+        const callData = await Promise.all(
+          callRecordings?.map((meeting) => meeting.queryRecordings()) ?? [],
+        );
+  
+        const recordings = callData
+          .filter((call) => call.recordings.length > 0)
+          .flatMap((call) => call.recordings);
+  
+        setRecordings(recordings);
+      } catch (error) {
+        toast.error("Try again later");
+      }
+    };
+
+    if (type === 'recordings') {
+      fetchRecordings();
+    }
+  }, [type, callRecordings]);
+
   const calls = getCalls();
   const noCallsMessage = getNoCallsMessage();
 
-  if(isLoading) return <Loader />
+  if(isLoading){
+    return <Loader />
+  }
 
   return (
     <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
@@ -64,14 +90,14 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
           key={(meeting as Call).id}
           icon={
             type === 'ended'
-              ? <ArrowLeftToLine />
+              ? <CalendarCheck2 size={30} />
               : type === 'upcoming'
-                ? <CalendarClock size={25} />
-                : <Videotape />
+                ? <CalendarClock size={30} />
+                : <Videotape size={30} />
           }
           title={
             (meeting as Call).state?.custom?.description ||
-            (meeting as CallRecording).filename?.substring(0, 20) ||
+            (meeting as CallRecording).filename?.substring(0, 26) ||
             'No Description'
           }
           date={
@@ -83,7 +109,7 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
           buttonText={type === 'recordings' ? 'Play' : 'Start'}
           handleClick={
             type === 'recordings'
-            ? () => router.push(`${(meeting as CallRecording).url}`)
+            ? () => window.open(`${(meeting as CallRecording).url}`, '_main')
             : () => router.push(`/meeting/${(meeting as Call).id}`)
           }
           link={

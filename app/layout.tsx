@@ -23,14 +23,15 @@ export default function RootLayout({
         variables: {
           colorText: "#fff",
           colorPrimary: "#0E78F9",
-          colorBackground: "#1c1f2e",
+          colorBackground: "#000",
           colorInputBackground: "#252a41",
-          colorInputText: "#fff"
+          colorInputText: "#fff",
+          colorAlphaShade: "#fff",
         }
       }}
     >
       <html lang="en">
-        <body className="min-h-screen w-full">
+        <body className="min-h-screen w-full overflow-auto">
           {children}
           <Toaster position="top-center" reverseOrder={false} />
         </body>

@@ -22,7 +22,7 @@ const StreamProvider = ({ children }: { children: ReactNode }) => {
         apiKey,
         user:{
             id: user?.id,
-            name: user?.username || user?.id,
+            name: user?.fullName || user?.username,
             image: user?.imageUrl
         },
         tokenProvider,

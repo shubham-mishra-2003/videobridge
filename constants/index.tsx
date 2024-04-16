@@ -33,3 +33,11 @@ export const sidebarData = [
     img: <BookPlus />
   }
 ];
+
+export const avatarImages = [
+  "/images/boy(1).png",
+  "/images/boy(2).png",
+  "/images/avatar.png",
+  "/images/boy.png",
+  "/images/girl.png"
+];

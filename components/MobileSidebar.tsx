@@ -28,7 +28,7 @@ const MobileSidebar = () => {
         <Menu size={30} className="cursor-pointer" />
       </Button>
       <Drawer open={open} onClose={toggleDrawer(false)} >
-        <div className="bg-slate-800 text-white h-full">
+        <div className="bg-slate-800 text-white overflow-auto h-full">
           <div className="w-full flex gap-3 items-center justify-center pb-10 p-5">
             <span className="text-xl">Theme -</span>
             <ModeSwitch />

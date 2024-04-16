@@ -18,15 +18,18 @@ import {
   useCallStateHooks
 } from "@stream-io/video-react-sdk";
 import { LayoutGrid, User2Icon } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import EndCallButton from "./EndCallButton";
 import Loader from "./Loader";
+import { cn } from "@/lib/utils";
 
 type CallLayout = "grid" | "speaker-left" | "speaker-right";
 
 const MeetingRoom = () => {
   const [layout, setLayout] = useState("speaker-left");
+
+  const router = useRouter();
 
   const [showParticipants, setShowParticipants] = useState(false);
 
@@ -36,7 +39,7 @@ const MeetingRoom = () => {
   const { useCallCallingState } = useCallStateHooks();
   const callingState = useCallCallingState();
 
-  if(callingState != CallingState.JOINED) return <Loader />
+  if (callingState != CallingState.JOINED) return <Loader />;
 
   const CallLayout = () => {
     switch (layout) {
@@ -57,15 +60,15 @@ const MeetingRoom = () => {
           <CallLayout />
         </div>
         <div
-          className={`${showParticipants
-            ? "show-block"
-            : null} h-[calc(100vh-86px) hidden ml-2`}
+          className={cn('h-[calc(100vh-86px)] hidden ml-2', {
+            'show-block': showParticipants,
+          })}
         >
           <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
       </div>
       <div className="fixed flex-wrap bottom-0 flex w-full items-center justify-center gap-5 pb-2">
-        <CallControls />
+        <CallControls onLeave={() => router.push(`/`)} />
         <div className="flex items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger className="text-white cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]">

@@ -9,6 +9,7 @@ import {
 
 import Alert from "./Alert";
 import { Button } from "@mui/material";
+import { PhoneOff } from "lucide-react";
 
 const MeetingSetup = ({
   setIsSetupComplete
@@ -56,7 +57,7 @@ const MeetingSetup = ({
     return (
       <Alert
         title="The call has been ended by the host"
-        iconUrl="/icons/call-ended.svg"
+        icon = {<PhoneOff/>}
       />
     );
 
