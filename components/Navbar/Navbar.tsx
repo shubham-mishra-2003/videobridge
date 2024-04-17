@@ -11,7 +11,8 @@ const Navbar = () => {
   return (
     <div className="flex top-0 left-0 fixed z-10 w-full bg-black items-center justify-between md:px-6 pl-6 pr-1 py-2">
       <div className="text-slate-200">
-        <Link href="/">
+        <Link href="/" className="flex items-center gap-2">
+          <Image src="/videobridge_logo.png" width={50} height={50} alt="Video Bridge Logo" />
           <h1 className="md:text-3xl sm:text-2xl text-xl font-extrabold">
             Video<span className="text-blue-500">Bridge</span>
           </h1>

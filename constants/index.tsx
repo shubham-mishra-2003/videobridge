@@ -35,9 +35,9 @@ export const sidebarData = [
 ];
 
 export const avatarImages = [
-  "/images/boy(1).png",
-  "/images/boy(2).png",
-  "/images/avatar.png",
-  "/images/boy.png",
-  "/images/girl.png"
+  "/avatar/boy(1).png",
+  "/avatar/boy(2).png",
+  "/avatar/avatar.png",
+  "/avatar/boy.png",
+  "/avatar/girl.png"
 ];

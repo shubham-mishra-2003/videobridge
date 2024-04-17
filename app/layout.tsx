@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 export const metadata: Metadata = {
   title: "VideoBridge | connect",
   description: "Video meeting/calling App made by connect",
-  icons: "../logo.jpeg"
+  icons: "../videobridge_logo.png"
 };
 
 export default function RootLayout({

@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 export const metadata: Metadata = {
   title: "VideoBridge | connect",
   description: "Video meeting/calling App made by connect",
-  icons: "../logo.jpeg"
+  icons: "../videobridge_logo.png"
 };
 
 const HomeLayout = ({ children }: { children: ReactNode }) => {
