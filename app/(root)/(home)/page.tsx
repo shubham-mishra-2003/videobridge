@@ -1,7 +1,8 @@
 import MeetingType from "@/components/MeetingType";
 
 const Home = () => {
-  const now = new Date();
+  const nowString = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+  const now = new Date(nowString);
 
   const time = now.toLocaleTimeString("en-US", {
     hour: "2-digit",
