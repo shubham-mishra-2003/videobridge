@@ -1,7 +1,8 @@
 import Navbar from "@/components/Navbar/Navbar";
-import { Metadata } from 'next';
+import { Metadata } from "next";
 import Sidebar from "@/components/Sidebar";
 import { ReactNode } from "react";
+import MobileSidebar from "@/components/MobileSidebar";
 
 export const metadata: Metadata = {
   title: "VideoBridge | connect",
@@ -17,11 +18,14 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
         <div className="hidden md:flex p-0">
           <Sidebar />
         </div>
-        <section className="flex flex-col px-6 pb-6 pt-28 overflow-x-auto max-md:pb-14 w-full sm:px-14">
-          <div className="w-full">
-            {children}
-          </div>
-        </section>
+        <div className="flex flex-col w-full">
+          <section className="flex flex-col px-6 pb-20 md:pb-6 pt-28 overflow-x-auto w-full sm:px-14">
+            <div className="w-full">
+              {children}
+            </div>
+          </section>
+          <MobileSidebar />
+        </div>
       </div>
     </main>
   );
