@@ -24,9 +24,9 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
               {children}
             </div>
           </section>
-          <MobileSidebar />
         </div>
       </div>
+      <MobileSidebar />
     </main>
   );
 };
